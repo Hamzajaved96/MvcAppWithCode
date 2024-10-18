@@ -30,8 +30,6 @@ jobs:
       - name: List files in project directory
         run: dir
       
-      - name: List files after publish
-        run: dir "./myapp"
 
       - name: List contents of DOTNET_ROOT
         run: dir "${{env.DOTNET_ROOT}}"
