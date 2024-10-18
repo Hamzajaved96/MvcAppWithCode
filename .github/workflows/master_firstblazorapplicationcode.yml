@@ -24,20 +24,26 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
   
-      - name: Print environment variables
-        run: printenv
+      - name: Print working directory
+        run: echo %cd%
+
+      - name: List files in project directory
+        run: dir
       
+      - name: List files after publish
+        run: dir "./myapp"
+
       - name: List contents of DOTNET_ROOT
         run: dir "${{env.DOTNET_ROOT}}"
       
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ./myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ./myapp
 
   deploy:
     runs-on: windows-latest
