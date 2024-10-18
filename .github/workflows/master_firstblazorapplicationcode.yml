@@ -23,7 +23,13 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-
+  
+      - name: Print environment variables
+        run: printenv
+      
+      - name: List contents of DOTNET_ROOT
+        run: dir "${{env.DOTNET_ROOT}}"
+      
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
